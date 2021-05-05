@@ -69,17 +69,11 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   var table = $('#example1').DataTable({
-    pageLength: 10,
+    paging: true,
     lengthChange: false,
+    buttons: ['print', 'excel', 'pdf'],
+    dom: 'Bftip',
   });
-  // $('#example2').DataTable({
-  //   paging: true,
-  //   lengthChange: false,
-  //   searching: false,
-  //   ordering: true,
-  //   info: true,
-  //   autoWidth: false,
-  // });
 });
 
 $(function () {

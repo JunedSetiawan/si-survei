@@ -43,7 +43,7 @@
 							<?php echo $no++; ?>
 						</td>
 						<td>
-							<?php echo $row['tanggal']; ?>
+							<?php echo $row['date']; ?>
 						</td>
 						<td>
 							<?php echo $row['gender']; ?>
