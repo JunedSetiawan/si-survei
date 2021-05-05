@@ -121,14 +121,6 @@
 						</li>
 
 						<li class="nav-item">
-							<a href="../form/index.php" class="nav-link">
-								<i class="nav-icon far fa fa-users"></i>
-								<p>
-									Form Pengaduan
-								</p>
-							</a>
-						</li>
-						<li class="nav-item">
 							<a href="jumlah_data.php" class="nav-link">
 								<i class="nav-icon far fa fa-users"></i>
 								<p>
@@ -161,7 +153,7 @@
 				<div class="card card-info">
 	<div class="card-header">
 		<h3 class="card-title">
-			<i class="fa fa-table"></i> Data Survei</h3>
+			<i class="fa fa-filter"></i> Filter Unduh</h3>
 	</div>
 	<!-- /.card-header -->
 	<div class="card-body">
@@ -261,20 +253,11 @@
 	<!-- Select2 -->
 	<script src="plugins/select2/js/select2.full.min.js"></script>
 	<!-- DataTables -->
-	<!-- <script src="plugins/datatables/jquery.dataTables.js"></script>
-	<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script> -->
 	<!-- AdminLTE App -->
 	<script src="dist/js/adminlte.min.js"></script>
 	<!-- AdminLTE for demo purposes -->
 	<script src="dist/js/demo.js"></script>
 	<!-- page script -->
-	<!-- <script src="plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
-	<script src="plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
-	<script src="plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
-	<script src="plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
-	<script src="plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
-	<script src="plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
-	<script src="plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script> -->
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script>

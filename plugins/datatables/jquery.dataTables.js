@@ -10413,7 +10413,7 @@
 		 *      } );
 		 *    } );
 		 */
-		"bInfo": true,
+		"bInfo": false,
 	
 	
 		/**
@@ -10450,7 +10450,7 @@
 		 *      } );
 		 *    } );
 		 */
-		"bPaginate": true,
+		"bPaginate": false,
 	
 	
 		/**
@@ -10574,7 +10574,7 @@
 		 *      } );
 		 *    } );
 		 */
-		"bSort": true,
+		"bSort": false,
 	
 	
 		/**

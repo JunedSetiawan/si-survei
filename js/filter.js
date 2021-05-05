@@ -3,7 +3,7 @@ $(document).ready(function () {
   var toDate = '';
   var action = 'fetch_data';
 
-  // filter_data();
+  filter_data();
 
   function filter_data() {
     var pendidikan = get_filter('pendidikan');
@@ -67,12 +67,15 @@ $(document).ready(function () {
   });
 });
 
-$(document).ready(function () {
-  var table = $('#example1').DataTable({
+$(function () {
+  $('#example1').DataTable();
+  $('#example2').DataTable({
     paging: true,
     lengthChange: false,
-    buttons: ['print', 'excel', 'pdf'],
-    dom: 'Bftip',
+    searching: false,
+    ordering: true,
+    info: true,
+    autoWidth: false,
   });
 });
 

@@ -127,10 +127,10 @@
 						</li>
 
 						<li class="nav-item">
-							<a href="export_excel.php" class="nav-link">
+							<a href="filter.php" class="nav-link">
 								<i class="nav-icon far fa fa-download"></i>
 								<p>
-									Unduh Data
+									Unduh
 								</p>
 							</a>
 						</li>
@@ -507,8 +507,9 @@
 	<!-- ./wrapper -->
 
 	<!-- jQuery -->
-	<script src="plugins/jquery/jquery.min.js"></script>
+	<script src="js/jquery-1.10.2.min.js"></script>
 	<!-- Bootstrap 4 -->
+	<script src="js/bootstrap.min.js"></script>
 	<!-- Select2 -->
 	<script src="plugins/select2/js/select2.full.min.js"></script>
 	<!-- DataTables -->
@@ -520,19 +521,10 @@
 	<script src="dist/js/demo.js"></script>
 	<!-- page script -->
 	<script src="plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
-	<script src="plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
-	<script src="plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
-	<script src="plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
-	<script src="plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
-	<script src="plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
-	<script src="plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 	<script type="text/javascript" src="chart/chart.js"></script> 
 	<script src="js/filter.js"></script>
-	<script src="js/chartpie.js"></script>
-
-
 </body>
 
 </html>
