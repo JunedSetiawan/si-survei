@@ -73,6 +73,11 @@ include "inc/koneksi.php";
 							<a class="link" href="regis.php">Buat Akun</a>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-12">
+							Isi Form Survey <a class="link" href="/dashadmin/form/index.php" target="_blank">Disini</a>
+						</div>
+					</div>
 				</form>
 
 			</div>

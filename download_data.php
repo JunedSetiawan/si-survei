@@ -137,5 +137,3 @@ include_once('inc/config.php');
 			</table>
 	';
 	echo $output;
-
-?>

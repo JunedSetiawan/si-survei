@@ -200,7 +200,7 @@ include "koneksi.php";
 		</form>
 		<div class="footer">
 			<p><a target="_blank" href="https://dpmptsp.ponorogo.go.id">DINAS PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU</a> |
-				<span><b>by</b></span><span><a href="github.com/JunedSetiawan">JunedSetiawan</a> 2021 </span>
+				<span><b>By </b></span><span><a href="github.com/JunedSetiawan">JunedSetiawan</a> 2021 </span>
 			</p>
 		</div>
 	</div>

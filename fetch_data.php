@@ -115,5 +115,3 @@ if(isset($_POST["action"]))
 	echo $output;
 
 }
-
-?>
