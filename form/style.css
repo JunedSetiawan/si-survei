@@ -1,0 +1,168 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	font-family: 'arial', sans-serif;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+	margin:auto;
+	background-color: darkgray;
+	font-family: arial, sans-serif;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+.container {
+	width: 650px;
+	margin: auto;
+}
+.hero {
+	margin: 10px auto;
+
+}
+.hero img {
+	border-radius: 10px;
+	background-size: cover;
+	background-position: center;
+}
+.header-title {
+	background-color: #fff;
+	padding: 15px;
+	border-radius: 10px;
+	border-top: 10px solid orange;
+	width: 640px;
+	margin: auto;
+}
+.header-title .menu-head {
+	font-size: 32px;
+	padding: 8px;
+}
+.header-title p {
+	padding: 8px;
+	font-size: 15px;
+}
+.header-title .wajib {
+	color: red;
+	margin-bottom: 4px;
+}
+.content {
+	background-color: #fff;
+	width: 621px;
+	border-radius: 10px;
+	margin: 15px auto;
+	padding: 25px;
+}
+.content .title-content {
+	font-size:17px;
+	font-weight: none;
+	line-height: 24px;
+}
+.content .title-content span {
+	color: red;
+}
+.content .menu-content {
+	padding-top: 20px;	
+}
+.content .menu-content .radio {
+	padding-bottom: 13px;
+	margin-left:-7px;
+	display: flex;
+}
+.content .menu-content .radio input {
+	width: 20px;
+	height: 20px;
+}
+.content .menu-content .radio .date {
+	width: 150px;
+	height: 30px;
+	outline: none;
+	border:none;
+	font-size: 16px;
+}
+.content .menu-content .radio .label {
+	padding-left:13px;
+	font-size: 15px;
+	padding-top: 5px;
+}
+.date {
+ width: 150px;
+}
+button {
+	width: 85px;
+	cursor: pointer;
+	height: 38px;
+	margin-bottom: 20px;
+	background-color: #1768FF;
+	border: none;
+	outline:none;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 15px;
+	font-weight: bold;
+}
+button:hover {
+	opacity: 0.9;
+}
+button:active {
+	opacity:0;
+	transition: 1.5s;
+}
+.link a {
+	margin:10px;
+	text-decoration:none;
+	color: blue;
+}
+.link a:hover {
+	text-decoration:underline;
+}
+.footer {
+	margin: 10px auto;
+	font-size: 14px;
+	width: 700px;
+}
+.footer p {
+	text-align:center;
+	padding:10px;
+	font-weight: bold;
+	opacity: .8;
+	margin-right: 20px;
+}
+.footer p a {
+	color: #000;
+}
+.footer p a:hover {
+	text-decoration:underline;
+}

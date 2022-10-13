@@ -8,7 +8,7 @@ $connect = new PDO("mysql:host=localhost;dbname=db_form", "root", "");
 include_once('inc/config.php');
 	include ('inc/koneksi.php');
 
-
+	
 	$query = "
 		SELECT * FROM tb_form WHERE id_form != ''
 	";

@@ -1,23 +1,23 @@
 <?php
-    //Mulai Sesion
-    session_start();
-    if (isset($_SESSION["ses_username"])==""){
+//Mulai Sesion
+session_start();
+if (isset($_SESSION["ses_username"]) == "") {
 	header("location: login.php");
-    
-    }else{
-      $data_nama = $_SESSION["ses_nama"];
-    }
+} else {
+	$data_nama = $_SESSION["ses_nama"];
+	$data_level = $_SESSION["ses_level"];
+}
 
-    //KONEKSI DB
-	include "inc/koneksi.php";
-	$connect = new PDO("mysql:host=localhost;dbname=db_form", "root", "");
+//KONEKSI DB
+include "inc/koneksi.php";
+$connect = new PDO("mysql:host=localhost;dbname=db_form", "root", "");
 
-	
-	$sql = $koneksi->query("SELECT * from tb_profil");
-	while ($data= $sql->fetch_assoc()) {
-	
-	$nama=$data['nama_profil'];
-	}
+
+$sql = $koneksi->query("SELECT * from tb_profil");
+while ($data = $sql->fetch_assoc()) {
+
+	$nama = $data['nama_profil'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +46,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 	<!-- Alert -->
 	<script src="plugins/alert.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 </head>
 
@@ -116,32 +116,42 @@
 								</p>
 							</a>
 						</li>
+						<?php if ($data_level == "Admin") : ?>
+							<li class="nav-item">
+								<a href="jumlah_data.php" class="nav-link">
+									<i class="nav-icon far fa fa-users"></i>
+									<p>
+										Jumlah Data
+									</p>
+								</a>
+							</li>
 
-						<li class="nav-item">
-							<a href="jumlah_data.php" class="nav-link">
-								<i class="nav-icon far fa fa-users"></i>
-								<p>
-									Jumlah Data
-								</p>
-							</a>
-						</li>
+							<li class="nav-item">
+								<a href="admin/penggona/data_pengguna.php" class="nav-link">
+									<i class="nav-icon far fa fa-users"></i>
+									<p>
+										Data Pengguna
+									</p>
+								</a>
+							</li>
 
-						<li class="nav-item">
-							<a href="filter.php" class="nav-link">
-								<i class="nav-icon far fa fa-download"></i>
-								<p>
-									Unduh
-								</p>
-							</a>
-						</li>
+							<li class="nav-item">
+								<a href="filter.php" class="nav-link">
+									<i class="nav-icon far fa fa-download"></i>
+									<p>
+										Unduh
+									</p>
+								</a>
+							</li>
+						<?php endif ?>
 
 						<li class="nav-link"></li>
-							<a onclick="return confirm('Apakah anda yakin akan keluar ?')" href="logout.php" class="nav-link">
-								<i class="nav-icon far fa-circle text-danger"></i>
-								<p>
-									Logout
-								</p>
-							</a>
+						<a onclick="return confirm('Apakah anda yakin akan keluar ?')" href="logout.php" class="nav-link">
+							<i class="nav-icon far fa-circle text-danger"></i>
+							<p>
+								Logout
+							</p>
+						</a>
 						</li>
 				</nav>
 				<!-- /.sidebar-menu -->
@@ -158,328 +168,321 @@
 			<!-- Main content -->
 			<section class="content">
 				<div class="card card-info">
-	<div class="card-header">
-		<h3 class="card-title">
-			<i class="fa fa-table"></i> Data Survei</h3>
-	</div>
-	<!-- /.card-header -->
-	<div class="card-body">
-		<div class="table-responsive">
-			<div class="row">
-	<div class="col-md-2">
-		 <div class="form-group">
-			<label>Tanggal</label>
-				<input type="text" name="daterange" class="form-control" placeholder="Rentang tanggal" id="tanggal" />      
-		</div> 
-	</div>			
-	<div class="col-md-2">
-            <div class="list-group">
-					<label>Gender</label>
-                    <?php
+					<div class="card-header">
+						<h3 class="card-title">
+							<i class="fa fa-table"></i> Data Survei
+						</h3>
+					</div>
+					<!-- /.card-header -->
+					<div class="card-body">
+						<div class="table-responsive">
+							<div class="row">
+								<div class="col-md-2">
+									<div class="form-group">
+										<label>Tanggal</label>
+										<input type="text" name="daterange" class="form-control" placeholder="Rentang tanggal" id="tanggal" />
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="list-group">
+										<label>Gender</label>
+										<?php
 
-                    $query = "
+										$query = "
                     SELECT DISTINCT gender FROM tb_form ORDER BY gender DESC
                     ";
-                    $statement = $connect->prepare($query);
-                    $statement->execute();
-                    $result = $statement->fetchAll();
-                    foreach($result as $row)
-                    {
-                    ?>
-                    <div class="list-group-item checkbox">
-                        <label><input type="checkbox" class="common_selector gender" value="<?php echo $row['gender']; ?>" > <?php echo $row['gender']; ?></label>
-                    </div>
-                    <?php    
-                    }
+										$statement = $connect->prepare($query);
+										$statement->execute();
+										$result = $statement->fetchAll();
+										foreach ($result as $row) {
+										?>
+											<div class="list-group-item checkbox">
+												<label><input type="checkbox" class="common_selector gender" value="<?php echo $row['gender']; ?>"> <?php echo $row['gender']; ?></label>
+											</div>
+										<?php
+										}
 
-                    ?>
-                </div>
-            </div>
-    <div class="col-md-2">
-    	<div class="list-group">
-					<label>Pendidikan</label>
-                    <div style="height: 170px; overflow-y: auto; overflow-x: hidden;">
-					<?php
+										?>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="list-group">
+										<label>Pendidikan</label>
+										<div style="height: 170px; overflow-y: auto; overflow-x: hidden;">
+											<?php
 
-                    $query = "SELECT DISTINCT pendidikan FROM tb_form ORDER BY pendidikan DESC";
-                    $statement = $connect->prepare($query);
-                    $statement->execute();
-                    $result = $statement->fetchAll();
-                    foreach($result as $row)
-                    {
-                    ?>
-                    <div class="list-group-item checkbox">
-                        <label><input type="checkbox" class="common_selector pendidikan" value="<?php echo $row['pendidikan']; ?>"  > <?php echo $row['pendidikan']; ?></label>
-                    </div>
-                    <?php
-                    }
+											$query = "SELECT DISTINCT pendidikan FROM tb_form ORDER BY pendidikan DESC";
+											$statement = $connect->prepare($query);
+											$statement->execute();
+											$result = $statement->fetchAll();
+											foreach ($result as $row) {
+											?>
+												<div class="list-group-item checkbox">
+													<label><input type="checkbox" class="common_selector pendidikan" value="<?php echo $row['pendidikan']; ?>"> <?php echo $row['pendidikan']; ?></label>
+												</div>
+											<?php
+											}
 
-                    ?>
-                    </div>
-                </div>
-    </div>
-    <div class="col-md-3">
-    <div class="list-group">
-					<label>Pekerjaan</label>
-					<div style="height: 170px; overflow-y: auto; overflow-x: hidden;">
-                    <?php
+											?>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="list-group">
+										<label>Pekerjaan</label>
+										<div style="height: 170px; overflow-y: auto; overflow-x: hidden;">
+											<?php
 
-                    $query = "
+											$query = "
                     SELECT DISTINCT pekerjaan FROM tb_form ORDER BY pekerjaan DESC
                     ";
-                    $statement = $connect->prepare($query);
-                    $statement->execute();
-                    $result = $statement->fetchAll();
-                    foreach($result as $row)
-                    {
-                    ?>
-                    <div class="list-group-item checkbox">
-                        <label><input type="checkbox" class="common_selector pekerjaan" value="<?php echo $row['pekerjaan']; ?>" > <?php echo $row['pekerjaan']; ?></label>
-                    </div>
-                    <?php    
-                    }
+											$statement = $connect->prepare($query);
+											$statement->execute();
+											$result = $statement->fetchAll();
+											foreach ($result as $row) {
+											?>
+												<div class="list-group-item checkbox">
+													<label><input type="checkbox" class="common_selector pekerjaan" value="<?php echo $row['pekerjaan']; ?>"> <?php echo $row['pekerjaan']; ?></label>
+												</div>
+											<?php
+											}
 
-                    ?>
-                </div>
-            </div>
-            </div>
-			<div class="col-md-2">
-            <div class="list-group">
-					<label>Query 1</label>
-                    <?php
+											?>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="list-group">
+										<label>Query 1</label>
+										<?php
 
-                    $query = "
+										$query = "
                     SELECT DISTINCT soal1 FROM tb_form ORDER BY soal1 DESC
                     ";
-                    $statement = $connect->prepare($query);
-                    $statement->execute();
-                    $result = $statement->fetchAll();
-                    foreach($result as $row)
-                    {
-                    ?>
-                    <div class="list-group-item checkbox">
-                        <label><input type="checkbox" class="common_selector soal1" value="<?php echo $row['soal1']; ?>" > <?php echo $row['soal1']; ?></label>
-                    </div>
-                    <?php    
-                    }
+										$statement = $connect->prepare($query);
+										$statement->execute();
+										$result = $statement->fetchAll();
+										foreach ($result as $row) {
+										?>
+											<div class="list-group-item checkbox">
+												<label><input type="checkbox" class="common_selector soal1" value="<?php echo $row['soal1']; ?>"> <?php echo $row['soal1']; ?></label>
+											</div>
+										<?php
+										}
 
-                    ?>
-                </div>
-            </div>
-			<div class="col-md-2">
-            <div class="list-group">
-					<label>Query 2</label>
-                    <?php
+										?>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="list-group">
+										<label>Query 2</label>
+										<?php
 
-                    $query = "
+										$query = "
                     SELECT DISTINCT soal2 FROM tb_form ORDER BY soal2 DESC
                     ";
-                    $statement = $connect->prepare($query);
-                    $statement->execute();
-                    $result = $statement->fetchAll();
-                    foreach($result as $row)
-                    {
-                    ?>
-                    <div class="list-group-item checkbox">
-                        <label><input type="checkbox" class="common_selector soal2" value="<?php echo $row['soal2']; ?>" > <?php echo $row['soal2']; ?></label>
-                    </div>
-                    <?php    
-                    }
+										$statement = $connect->prepare($query);
+										$statement->execute();
+										$result = $statement->fetchAll();
+										foreach ($result as $row) {
+										?>
+											<div class="list-group-item checkbox">
+												<label><input type="checkbox" class="common_selector soal2" value="<?php echo $row['soal2']; ?>"> <?php echo $row['soal2']; ?></label>
+											</div>
+										<?php
+										}
 
-                    ?>
-                </div>
-            </div>
-			<div class="col-md-2">
-            <div class="list-group">
-					<label>Query 3</label>
-                    <?php
+										?>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="list-group">
+										<label>Query 3</label>
+										<?php
 
-                    $query = "
+										$query = "
                     SELECT DISTINCT soal3 FROM tb_form ORDER BY soal3 DESC
                     ";
-                    $statement = $connect->prepare($query);
-                    $statement->execute();
-                    $result = $statement->fetchAll();
-                    foreach($result as $row)
-                    {
-                    ?>
-                    <div class="list-group-item checkbox">
-                        <label><input type="checkbox" class="common_selector soal3" value="<?php echo $row['soal3']; ?>" > <?php echo $row['soal3']; ?></label>
-                    </div>
-                    <?php    
-                    }
+										$statement = $connect->prepare($query);
+										$statement->execute();
+										$result = $statement->fetchAll();
+										foreach ($result as $row) {
+										?>
+											<div class="list-group-item checkbox">
+												<label><input type="checkbox" class="common_selector soal3" value="<?php echo $row['soal3']; ?>"> <?php echo $row['soal3']; ?></label>
+											</div>
+										<?php
+										}
 
-                    ?>
-                </div>
-            </div>
-			<div class="col-md-2">
-            <div class="list-group">
-					<label>Query 4</label>
-                    <?php
+										?>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="list-group">
+										<label>Query 4</label>
+										<?php
 
-                    $query = "
+										$query = "
                     SELECT DISTINCT soal4 FROM tb_form ORDER BY soal4 DESC
                     ";
-                    $statement = $connect->prepare($query);
-                    $statement->execute();
-                    $result = $statement->fetchAll();
-                    foreach($result as $row)
-                    {
-                    ?>
-                    <div class="list-group-item checkbox">
-                        <label><input type="checkbox" class="common_selector soal4" value="<?php echo $row['soal4']; ?>" > <?php echo $row['soal4']; ?></label>
-                    </div>
-                    <?php    
-                    }
+										$statement = $connect->prepare($query);
+										$statement->execute();
+										$result = $statement->fetchAll();
+										foreach ($result as $row) {
+										?>
+											<div class="list-group-item checkbox">
+												<label><input type="checkbox" class="common_selector soal4" value="<?php echo $row['soal4']; ?>"> <?php echo $row['soal4']; ?></label>
+											</div>
+										<?php
+										}
 
-                    ?>
-                </div>
-            </div>
-			<div class="col-md-2">
-            <div class="list-group">
-					<label>Query 5</label>
-                    <?php
+										?>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="list-group">
+										<label>Query 5</label>
+										<?php
 
-                    $query = "
+										$query = "
                     SELECT DISTINCT soal5 FROM tb_form ORDER BY soal5 DESC
                     ";
-                    $statement = $connect->prepare($query);
-                    $statement->execute();
-                    $result = $statement->fetchAll();
-                    foreach($result as $row)
-                    {
-                    ?>
-                    <div class="list-group-item checkbox">
-                        <label><input type="checkbox" class="common_selector soal5" value="<?php echo $row['soal5']; ?>" > <?php echo $row['soal5']; ?></label>
-                    </div>
-                    <?php    
-                    }
+										$statement = $connect->prepare($query);
+										$statement->execute();
+										$result = $statement->fetchAll();
+										foreach ($result as $row) {
+										?>
+											<div class="list-group-item checkbox">
+												<label><input type="checkbox" class="common_selector soal5" value="<?php echo $row['soal5']; ?>"> <?php echo $row['soal5']; ?></label>
+											</div>
+										<?php
+										}
 
-                    ?>
-                </div>
-            </div>
-			<div class="col-md-2">
-            <div class="list-group">
-					<label>Query 6</label>
-                    <?php
+										?>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="list-group">
+										<label>Query 6</label>
+										<?php
 
-                    $query = "
+										$query = "
                     SELECT DISTINCT soal6 FROM tb_form ORDER BY soal6 DESC
                     ";
-                    $statement = $connect->prepare($query);
-                    $statement->execute();
-                    $result = $statement->fetchAll();
-                    foreach($result as $row)
-                    {
-                    ?>
-                    <div class="list-group-item checkbox">
-                        <label><input type="checkbox" class="common_selector soal6" value="<?php echo $row['soal6']; ?>" > <?php echo $row['soal6']; ?></label>
-                    </div>
-                    <?php    
-                    }
+										$statement = $connect->prepare($query);
+										$statement->execute();
+										$result = $statement->fetchAll();
+										foreach ($result as $row) {
+										?>
+											<div class="list-group-item checkbox">
+												<label><input type="checkbox" class="common_selector soal6" value="<?php echo $row['soal6']; ?>"> <?php echo $row['soal6']; ?></label>
+											</div>
+										<?php
+										}
 
-                    ?>
-                </div>
-            </div>
-</div>
-    <br>
-			<table id="example1" class="table table-bordered table-striped">
-				<thead>
-				
-					<tr>
-						<th>No</th>
-						<th>tanggal</th>
-						<th>Gender</th>
-						<th>Pendidikan</th>
-						<th>Pekerjaan</th>
-						<th>Query1</th>
-						<th>Query2</th>
-						<th>Query3</th>
-						<th>Query4</th>
-						<th>Query5</th>
-						<th>Query6</th>
-					</tr>
-				</thead>
-				<tbody>
-				
-					<?php
-        
-        $sql = $koneksi->query("SELECT * from tb_form");
-              $no = 1;
-              while ($row= $sql->fetch_assoc()) {
-            ?>
-            
+										?>
+									</div>
+								</div>
+							</div>
+							<br>
+							<table id="example1" class="table table-bordered table-striped">
+								<thead>
 
-					<tr>
-						<td>
-							<?php echo $no++; ?>
-						</td>
-						<td>
-							<?php echo $row['tanggal']; ?>
-						</td>
-						<td>
-							<?php echo $row['gender']; ?>
-						</td>
-						<td>
-							<?php echo $row['pendidikan']; ?>
-						</td>
-						<td>
-							<?php echo $row['pekerjaan']; ?>
-						</td>
-						<td>
-							<?php echo $row['soal1']; ?>
-						</td>
-						<td>
-							<?php echo $row['soal2']; ?>
-						</td>
-						<td>
-							<?php echo $row['soal3']; ?>
-						</td>
-						<td>
-							<?php echo $row['soal4']; ?>
-						</td>
-						<td>
-							<?php echo $row['soal5']; ?>
-						</td>	
-						<td>
-							<?php echo $row['soal6']; ?>
-						</td>
-					</tr>
+									<tr>
+										<th>No</th>
+										<th>tanggal</th>
+										<th>Gender</th>
+										<th>Pendidikan</th>
+										<th>Pekerjaan</th>
+										<th>Query1</th>
+										<th>Query2</th>
+										<th>Query3</th>
+										<th>Query4</th>
+										<th>Query5</th>
+										<th>Query6</th>
+									</tr>
+								</thead>
+								<tbody>
 
-					<?php
-              }
-            ?>
-				</tbody>
-			</div>
-				</tfoot>
-			</table>
-		</div>
-	</div>
-	<!-- /.card-body -->
+									<?php
+
+									$sql = $koneksi->query("SELECT * from tb_form");
+									$no = 1;
+									while ($row = $sql->fetch_assoc()) {
+									?>
+
+
+										<tr>
+											<td>
+												<?php echo $no++; ?>
+											</td>
+											<td>
+												<?php echo $row['tanggal']; ?>
+											</td>
+											<td>
+												<?php echo $row['gender']; ?>
+											</td>
+											<td>
+												<?php echo $row['pendidikan']; ?>
+											</td>
+											<td>
+												<?php echo $row['pekerjaan']; ?>
+											</td>
+											<td>
+												<?php echo $row['soal1']; ?>
+											</td>
+											<td>
+												<?php echo $row['soal2']; ?>
+											</td>
+											<td>
+												<?php echo $row['soal3']; ?>
+											</td>
+											<td>
+												<?php echo $row['soal4']; ?>
+											</td>
+											<td>
+												<?php echo $row['soal5']; ?>
+											</td>
+											<td>
+												<?php echo $row['soal6']; ?>
+											</td>
+										</tr>
+
+									<?php
+									}
+									?>
+								</tbody>
+						</div>
+						</tfoot>
+						</table>
+					</div>
+				</div>
+				<!-- /.card-body -->
 				<!-- /. WEB DINAMIS DISINI ############################################################################### -->
 				<div class="container-fluid">
 
-					<?php 
-      if(isset($_GET['page'])){
-          $hal = $_GET['page'];
-  
-          switch ($hal) {
+					<?php
+					if (isset($_GET['page'])) {
+						$hal = $_GET['page'];
 
-				//Asrama
-				case 'data-survei':
-					include "index.php";
-					break;
-				case 'del-survei':
-					include "admin/survei/del_survei.php";
-					break;
-			
-              //default
-              default:
-                  echo "<center><h1> ERROR !</h1></center>";
-                  break;    
-          }
-      }
-    ?>
+						switch ($hal) {
+
+								//Asrama
+							case 'data-survei':
+								include "index.php";
+								break;
+							case 'del-survei':
+								include "admin/survei/del_survei.php";
+								break;
+
+
+								//default
+							default:
+								echo "<center><h1> ERROR !</h1></center>";
+								break;
+						}
+					}
+					?>
 
 				</div>
 			</section>
@@ -523,7 +526,7 @@
 	<script src="plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-	<script type="text/javascript" src="chart/chart.js"></script> 
+	<script type="text/javascript" src="chart/chart.js"></script>
 	<script src="js/filter.js"></script>
 </body>
 
